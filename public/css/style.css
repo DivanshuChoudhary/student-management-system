@@ -539,3 +539,24 @@ textarea.form-control{
 ::-webkit-scrollbar-thumb:hover{
     background:#0b5ed7;
 }
+
+body{
+    background:#f5f5f5;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+.navbar-brand{
+    font-size:24px;
+}
+
+.card{
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+footer{
+    margin-top:80px;
+}

@@ -1,0 +1,78 @@
+/* ==========================
+   Tablet Devices
+========================== */
+
+@media (max-width:992px){
+
+    .navbar-nav{
+        text-align:center;
+        margin-top:15px;
+    }
+
+    .display-5{
+        font-size:2.4rem;
+    }
+
+    .card{
+        margin-bottom:20px;
+    }
+
+}
+
+/* ==========================
+   Mobile Devices
+========================== */
+
+@media (max-width:768px){
+
+    .display-5{
+        font-size:2rem;
+    }
+
+    .lead{
+        font-size:1rem;
+    }
+
+    .container{
+        padding-left:20px;
+        padding-right:20px;
+    }
+
+    .btn{
+        width:100%;
+        margin-bottom:10px;
+    }
+
+    footer{
+        font-size:14px;
+    }
+
+}
+
+/* ==========================
+   Small Mobile
+========================== */
+
+@media (max-width:576px){
+
+    .navbar-brand{
+        font-size:20px;
+    }
+
+    h1{
+        font-size:30px;
+    }
+
+    h3{
+        font-size:22px;
+    }
+
+    .card-body{
+        padding:20px;
+    }
+
+    table{
+        font-size:13px;
+    }
+
+}
