@@ -1,0 +1,541 @@
+/*==========================
+ Google Font
+===========================*/
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#f5f7fb;
+    color:#222;
+}
+
+/*==========================
+ Navbar
+===========================*/
+
+.navbar{
+    background:linear-gradient(90deg,#0d6efd,#3f8cff);
+    padding:15px 0;
+}
+
+.navbar-brand{
+    font-size:28px;
+    font-weight:700;
+}
+
+.navbar-brand i{
+    margin-right:8px;
+}
+
+.nav-link{
+    color:white!important;
+    font-weight:500;
+    margin-left:18px;
+    transition:.3s;
+}
+
+.nav-link:hover{
+    color:#ffe082!important;
+}
+
+/*==========================
+ Hero
+===========================*/
+
+.hero{
+    padding:150px 0 90px;
+}
+
+.hero h1{
+    font-size:55px;
+    line-height:70px;
+}
+
+.hero p{
+    color:#666;
+    font-size:18px;
+}
+
+.hero-img{
+    width:100%;
+    border-radius:25px;
+    transition:.4s;
+}
+
+.hero-img:hover{
+    transform:scale(1.03);
+}
+
+.btn-primary{
+    padding:12px 28px;
+    border-radius:50px;
+    font-weight:600;
+}
+
+.btn-outline-primary{
+    padding:12px 28px;
+    border-radius:50px;
+    font-weight:600;
+}
+
+/*==========================
+ Section Title
+===========================*/
+
+section h2{
+    font-weight:700;
+    margin-bottom:15px;
+}
+
+section p{
+    color:#666;
+}
+
+/*==========================
+ Feature Cards
+===========================*/
+
+.feature-card{
+
+    background:#fff;
+
+    border-radius:20px;
+
+    padding:35px 25px;
+
+    text-align:center;
+
+    transition:.35s;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.08);
+
+    height:100%;
+
+}
+
+.feature-card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:0 25px 45px rgba(0,0,0,.15);
+
+}
+
+.feature-card .icon{
+
+    width:75px;
+
+    height:75px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    background:#0d6efd;
+
+    color:white;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:30px;
+
+    margin-bottom:25px;
+
+}
+
+.feature-card h4{
+
+    margin-bottom:15px;
+
+    font-weight:700;
+
+}
+
+.feature-card p{
+
+    color:#666;
+
+    font-size:15px;
+
+}
+
+/*==========================
+ Stats
+===========================*/
+
+.stats{
+
+    padding:80px 0;
+
+    background:linear-gradient(90deg,#0d6efd,#5a9dff);
+
+    color:white;
+
+}
+
+.stats h2{
+
+    font-size:42px;
+
+    font-weight:700;
+
+}
+
+.stats p{
+
+    color:white;
+
+    font-size:18px;
+
+}
+
+/*==========================
+ Footer
+===========================*/
+
+footer{
+
+    background:#111827;
+
+    color:white;
+
+    padding:60px 0 25px;
+
+}
+
+footer p{
+
+    color:#d8d8d8;
+
+}
+
+footer hr{
+
+    border-color:#444;
+
+}
+
+.social{
+
+    margin:25px 0;
+
+}
+
+.social i{
+
+    width:45px;
+
+    height:45px;
+
+    display:inline-flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:#0d6efd;
+
+    border-radius:50%;
+
+    margin:0 8px;
+
+    font-size:20px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.social i:hover{
+
+    transform:translateY(-8px);
+
+    background:#2563eb;
+
+}
+
+/*==========================
+ Common Sections
+===========================*/
+
+.section-title{
+    text-align:center;
+    margin-bottom:60px;
+}
+
+.section-title h2{
+    font-size:40px;
+    font-weight:700;
+    color:#1e293b;
+}
+
+.section-title p{
+    color:#64748b;
+    font-size:17px;
+}
+
+/*==========================
+ Page Banner
+===========================*/
+
+.page-banner{
+    margin-top:80px;
+    padding:70px 0;
+    background:linear-gradient(135deg,#0d6efd,#5b9dff);
+    color:#fff;
+    text-align:center;
+}
+
+.page-banner h1{
+    font-size:46px;
+    font-weight:700;
+}
+
+.page-banner p{
+    color:#eef3ff;
+    margin-top:10px;
+}
+
+/*==========================
+ Form
+===========================*/
+
+.form-section{
+    padding:70px 0;
+}
+
+.form-card{
+    background:#fff;
+    border-radius:20px;
+    padding:40px;
+    box-shadow:0 15px 35px rgba(0,0,0,.08);
+}
+
+.form-label{
+    font-weight:600;
+}
+
+.form-control,
+.form-select{
+    height:50px;
+    border-radius:12px;
+}
+
+textarea.form-control{
+    height:120px;
+}
+
+.form-control:focus,
+.form-select:focus{
+    box-shadow:none;
+    border-color:#0d6efd;
+}
+
+.btn-save{
+    background:#0d6efd;
+    color:#fff;
+    border:none;
+    padding:12px 35px;
+    border-radius:10px;
+    transition:.3s;
+}
+
+.btn-save:hover{
+    background:#0b5ed7;
+}
+
+/*==========================
+ Table
+===========================*/
+
+.table-section{
+    padding:70px 0;
+}
+
+.table-card{
+    background:#fff;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 15px 35px rgba(0,0,0,.08);
+}
+
+.table{
+    vertical-align:middle;
+}
+
+.table thead{
+    background:#0d6efd;
+    color:#fff;
+}
+
+.table th{
+    padding:15px;
+}
+
+.table td{
+    padding:15px;
+}
+
+.table img{
+    width:50px;
+    height:50px;
+    border-radius:50%;
+}
+
+/*==========================
+ Search
+===========================*/
+
+.search-box{
+    margin-bottom:25px;
+}
+
+.search-box input{
+    height:50px;
+    border-radius:12px;
+    padding-left:18px;
+}
+
+/*==========================
+ Action Buttons
+===========================*/
+
+.btn-edit{
+    background:#ffc107;
+    color:#000;
+    border:none;
+    border-radius:8px;
+    padding:8px 16px;
+    transition:.3s;
+}
+
+.btn-edit:hover{
+    background:#e0a800;
+}
+
+.btn-delete{
+    background:#dc3545;
+    color:#fff;
+    border:none;
+    border-radius:8px;
+    padding:8px 16px;
+    transition:.3s;
+}
+
+.btn-delete:hover{
+    background:#bb2d3b;
+}
+
+/*==========================
+ About
+===========================*/
+
+.about-section{
+    padding:80px 0;
+}
+
+.about-card{
+    background:#fff;
+    border-radius:20px;
+    padding:40px;
+    box-shadow:0 15px 35px rgba(0,0,0,.08);
+}
+
+.about-card h3{
+    font-weight:700;
+    margin-bottom:20px;
+}
+
+.about-card ul{
+    padding-left:20px;
+}
+
+.about-card li{
+    margin-bottom:10px;
+}
+
+/*==========================
+ Utilities
+===========================*/
+
+.shadow-card{
+    box-shadow:0 15px 35px rgba(0,0,0,.08);
+}
+
+.rounded-20{
+    border-radius:20px;
+}
+
+.mt-80{
+    margin-top:80px;
+}
+
+.mb-80{
+    margin-bottom:80px;
+}
+
+.text-primary-dark{
+    color:#0d47a1;
+}
+
+/*==========================
+ Animation
+===========================*/
+
+.feature-card,
+.form-card,
+.table-card,
+.about-card{
+    animation:fadeUp .7s ease;
+}
+
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+/*==========================
+ Scrollbar
+===========================*/
+
+::-webkit-scrollbar{
+    width:10px;
+}
+
+::-webkit-scrollbar-track{
+    background:#f1f1f1;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#0d6efd;
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#0b5ed7;
+}
