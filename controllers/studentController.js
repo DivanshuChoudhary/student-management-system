@@ -3,23 +3,30 @@ const path = require("path");
 
 const dataFile = path.join(__dirname, "../data/students.json");
 
-// Read Data
+// ==============================
+// Read Students
+// ==============================
+
 const readStudents = () => {
-    const data = fs.readFileSync(dataFile, "utf-8");
-
-    if (!data) return [];
-
-    return JSON.parse(data);
+    try {
+        const data = fs.readFileSync(dataFile, "utf8");
+        return data ? JSON.parse(data) : [];
+    } catch (error) {
+        return [];
+    }
 };
 
-// Write Data
+// ==============================
+// Write Students
+// ==============================
+
 const writeStudents = (students) => {
     fs.writeFileSync(dataFile, JSON.stringify(students, null, 2));
 };
 
-// ==========================
+// ==============================
 // GET All Students
-// ==========================
+// ==============================
 
 const getStudents = (req, res) => {
 
@@ -28,6 +35,10 @@ const getStudents = (req, res) => {
     res.status(200).json(students);
 
 };
+
+// ==============================
+// GET Student By ID
+// ==============================
 
 const getStudentById = (req, res) => {
 
@@ -38,33 +49,57 @@ const getStudentById = (req, res) => {
     const student = students.find(student => student.id === id);
 
     if (!student) {
-
         return res.status(404).json({
             message: "Student Not Found"
         });
-
     }
 
-    res.json(student);
+    res.status(200).json(student);
 
 };
 
-// ==========================
+// ==============================
 // ADD Student
-// ==========================
+// ==============================
 
 const addStudent = (req, res) => {
 
     const students = readStudents();
 
-    const {
+    let { name, roll, course, email } = req.body;
 
-        name,
-        roll,
-        course,
-        email
+    name = name?.trim();
+    roll = roll?.trim();
+    course = course?.trim();
+    email = email?.trim();
 
-    } = req.body;
+    if (!name || !roll || !course || !email) {
+
+        return res.status(400).json({
+            message: "All fields are required."
+        });
+
+    }
+
+    const rollExists = students.find(student => student.roll === roll);
+
+    if (rollExists) {
+
+        return res.status(400).json({
+            message: "Roll Number already exists."
+        });
+
+    }
+
+    const emailExists = students.find(student => student.email === email);
+
+    if (emailExists) {
+
+        return res.status(400).json({
+            message: "Email already exists."
+        });
+
+    }
 
     const newStudent = {
 
@@ -94,9 +129,9 @@ const addStudent = (req, res) => {
 
 };
 
-// ==========================
+// ==============================
 // UPDATE Student
-// ==========================
+// ==============================
 
 const updateStudent = (req, res) => {
 
@@ -116,19 +151,45 @@ const updateStudent = (req, res) => {
 
     }
 
+    const { name, roll, course, email } = req.body;
+
+    const rollExists = students.find(student => student.roll === roll && student.id !== id);
+
+    if (rollExists) {
+
+        return res.status(400).json({
+            message: "Roll Number already exists."
+        });
+
+    }
+
+    const emailExists = students.find(student => student.email === email && student.id !== id);
+
+    if (emailExists) {
+
+        return res.status(400).json({
+            message: "Email already exists."
+        });
+
+    }
+
     students[index] = {
 
-        ...students[index],
+        id,
 
-        ...req.body,
+        name,
 
-        id
+        roll,
+
+        course,
+
+        email
 
     };
 
     writeStudents(students);
 
-    res.json({
+    res.status(200).json({
 
         message: "Student Updated Successfully",
 
@@ -138,9 +199,9 @@ const updateStudent = (req, res) => {
 
 };
 
-// ==========================
+// ==============================
 // DELETE Student
-// ==========================
+// ==============================
 
 const deleteStudent = (req, res) => {
 
@@ -148,11 +209,23 @@ const deleteStudent = (req, res) => {
 
     const id = Number(req.params.id);
 
-    const filteredStudents = students.filter(student => student.id !== id);
+    const student = students.find(student => student.id === id);
 
-    writeStudents(filteredStudents);
+    if (!student) {
 
-    res.json({
+        return res.status(404).json({
+
+            message: "Student Not Found"
+
+        });
+
+    }
+
+    const updatedStudents = students.filter(student => student.id !== id);
+
+    writeStudents(updatedStudents);
+
+    res.status(200).json({
 
         message: "Student Deleted Successfully"
 
@@ -160,11 +233,13 @@ const deleteStudent = (req, res) => {
 
 };
 
-
+// ==============================
 
 module.exports = {
 
     getStudents,
+
+    getStudentById,
 
     addStudent,
 

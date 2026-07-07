@@ -4,16 +4,25 @@ const path = require("path");
 const studentRoutes = require("./routes/studentRoutes");
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
+// ============================
 // Middleware
+// ============================
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Static Files
+// ============================
+// Static Folder
+// ============================
+
 app.use(express.static(path.join(__dirname, "public")));
 
-// HTML Pages
+// ============================
+// HTML Routes
+// ============================
+
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "views", "index.html"));
 });
@@ -34,10 +43,24 @@ app.get("/about", (req, res) => {
     res.sendFile(path.join(__dirname, "views", "about.html"));
 });
 
-// Student API
+// ============================
+// Student API Routes
+// ============================
+
 app.use("/api/students", studentRoutes);
 
-// Server
+// ============================
+// 404 Page
+// ============================
+
+app.use((req, res) => {
+    res.status(404).send("<h2>404 | Page Not Found</h2>");
+});
+
+// ============================
+// Start Server
+// ============================
+
 app.listen(PORT, () => {
-    console.log(`✅ Server Running : http://localhost:${PORT}`);
+    console.log(`🚀 Server Running : http://localhost:${PORT}`);
 });
