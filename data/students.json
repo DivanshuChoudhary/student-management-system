@@ -5,5 +5,19 @@
     "roll": "2432310",
     "course": "B.tech CSE",
     "email": "dishu@123"
+  },
+  {
+    "id": 1783414235504,
+    "name": "Sujal Syal",
+    "roll": "2432311",
+    "course": "ECE",
+    "email": "choudharydivanshu55@gmail.com"
+  },
+  {
+    "id": 1783414304147,
+    "name": "Rohit Choudhary",
+    "roll": "2432312",
+    "course": "B.com",
+    "email": "rohit@12334"
   }
 ]
