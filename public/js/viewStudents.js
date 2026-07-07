@@ -9,11 +9,36 @@ let students = [];
 
 async function loadStudents() {
 
-    const response = await fetch(API);
+    try {
 
-    students = await response.json();
+        console.log("API =>", API);
 
-    displayStudents(students);
+        const response = await fetch(API);
+
+        console.log("Response =>", response.status);
+
+        if (!response.ok) {
+            throw new Error("Failed to fetch students");
+        }
+
+        students = await response.json();
+
+        console.log("Students =>", students);
+
+        displayStudents(students);
+
+    } catch (error) {
+
+        console.error(error);
+
+        table.innerHTML = `
+            <tr>
+                <td colspan="6" class="text-danger text-center">
+                    Failed to load students
+                </td>
+            </tr>
+        `;
+    }
 
 }
 
@@ -29,52 +54,36 @@ function displayStudents(data) {
 
         table.innerHTML = `
             <tr>
-                <td colspan="6">No Students Found</td>
+                <td colspan="6" class="text-center">
+                    No Students Found
+                </td>
             </tr>
         `;
 
         return;
-
     }
 
     data.forEach(student => {
 
         table.innerHTML += `
+            <tr>
+                <td>${student.id}</td>
+                <td>${student.name}</td>
+                <td>${student.roll}</td>
+                <td>${student.course}</td>
+                <td>${student.email}</td>
+                <td>
+                    <button class="btn btn-warning btn-sm me-2"
+                        onclick="editStudent(${student.id})">
+                        Edit
+                    </button>
 
-        <tr>
-
-            <td>${student.id}</td>
-
-            <td>${student.name}</td>
-
-            <td>${student.roll}</td>
-
-            <td>${student.course}</td>
-
-            <td>${student.email}</td>
-
-            <td>
-
-                <button
-                    class="btn btn-warning btn-sm"
-                    onclick="editStudent(${student.id})">
-
-                    Edit
-
-                </button>
-
-                <button
-                    class="btn btn-danger btn-sm"
-                    onclick="deleteStudent(${student.id})">
-
-                    Delete
-
-                </button>
-
-            </td>
-
-        </tr>
-
+                    <button class="btn btn-danger btn-sm"
+                        onclick="deleteStudent(${student.id})">
+                        Delete
+                    </button>
+                </td>
+            </tr>
         `;
 
     });
@@ -90,15 +99,10 @@ search.addEventListener("keyup", () => {
     const value = search.value.toLowerCase();
 
     const filtered = students.filter(student =>
-
         student.name.toLowerCase().includes(value) ||
-
         student.roll.toLowerCase().includes(value) ||
-
         student.course.toLowerCase().includes(value) ||
-
         student.email.toLowerCase().includes(value)
-
     );
 
     displayStudents(filtered);
@@ -111,17 +115,19 @@ search.addEventListener("keyup", () => {
 
 async function deleteStudent(id) {
 
-    const confirmDelete = confirm("Delete this student?");
+    if (!confirm("Delete this student?")) return;
 
-    if (!confirmDelete) return;
-
-    await fetch(`${API}/${id}`, {
-
+    const response = await fetch(`${API}/${id}`, {
         method: "DELETE"
-
     });
 
-    loadStudents();
+    if (response.ok) {
+
+        alert("Student Deleted Successfully");
+
+        loadStudents();
+
+    }
 
 }
 
@@ -134,7 +140,5 @@ function editStudent(id) {
     window.location.href = `/edit-student?id=${id}`;
 
 }
-
-// ======================
 
 loadStudents();
