@@ -3,9 +3,7 @@ const path = require("path");
 
 const dataFile = path.join(__dirname, "../data/students.json");
 
-// ==============================
-// Read Students
-// ==============================
+
 
 const readStudents = () => {
     try {
@@ -16,17 +14,13 @@ const readStudents = () => {
     }
 };
 
-// ==============================
-// Write Students
-// ==============================
+
 
 const writeStudents = (students) => {
     fs.writeFileSync(dataFile, JSON.stringify(students, null, 2));
 };
 
-// ==============================
-// GET All Students
-// ==============================
+
 
 const getStudents = (req, res) => {
 
@@ -36,9 +30,7 @@ const getStudents = (req, res) => {
 
 };
 
-// ==============================
-// GET Student By ID
-// ==============================
+
 
 const getStudentById = (req, res) => {
 
@@ -58,9 +50,7 @@ const getStudentById = (req, res) => {
 
 };
 
-// ==============================
-// ADD Student
-// ==============================
+
 
 const addStudent = (req, res) => {
 
@@ -129,9 +119,7 @@ const addStudent = (req, res) => {
 
 };
 
-// ==============================
-// UPDATE Student
-// ==============================
+
 
 const updateStudent = (req, res) => {
 
@@ -199,9 +187,7 @@ const updateStudent = (req, res) => {
 
 };
 
-// ==============================
-// DELETE Student
-// ==============================
+
 
 const deleteStudent = (req, res) => {
 
@@ -233,7 +219,7 @@ const deleteStudent = (req, res) => {
 
 };
 
-// ==============================
+
 
 module.exports = {
 

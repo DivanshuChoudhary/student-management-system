@@ -1,27 +1,51 @@
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
 
-const form = document.getElementById("studentForm");
+console.log("Student ID:", id);
+console.log("API URL:", `${API}/${id}`);
 
-// =====================
+const form = document.getElementById("editStudentForm");
+
+// ======================
 // Load Student
-// =====================
+// ======================
 
 async function loadStudent() {
 
-    const response = await fetch(`${API}/${id}`);
-    const student = await response.json();
+    try {
 
-    document.getElementById("name").value = student.name;
-    document.getElementById("roll").value = student.roll;
-    document.getElementById("course").value = student.course;
-    document.getElementById("email").value = student.email;
+        const response = await fetch(`${API}/${id}`);
+
+        console.log("Response Status:", response.status);
+
+        if (!response.ok) {
+
+            alert("Student Not Found");
+            return;
+
+        }
+
+        const student = await response.json();
+
+        console.log("Student Data:", student);
+
+        document.getElementById("name").value = student.name;
+        document.getElementById("roll").value = student.roll;
+        document.getElementById("course").value = student.course;
+        document.getElementById("email").value = student.email;
+
+    } catch (error) {
+
+        console.error(error);
+        alert("Error loading student.");
+
+    }
 
 }
 
-// =====================
+// ======================
 // Update Student
-// =====================
+// ======================
 
 form.addEventListener("submit", async (e) => {
 
@@ -29,39 +53,49 @@ form.addEventListener("submit", async (e) => {
 
     const updatedStudent = {
 
-        name: document.getElementById("name").value,
-        roll: document.getElementById("roll").value,
-        course: document.getElementById("course").value,
-        email: document.getElementById("email").value
+        name: document.getElementById("name").value.trim(),
+        roll: document.getElementById("roll").value.trim(),
+        course: document.getElementById("course").value.trim(),
+        email: document.getElementById("email").value.trim()
 
     };
 
-    const response = await fetch(`${API}/${id}`, {
+    try {
 
-        method: "PUT",
+        const response = await fetch(`${API}/${id}`, {
 
-        headers: {
-            "Content-Type": "application/json"
-        },
+            method: "PUT",
 
-        body: JSON.stringify(updatedStudent)
+            headers: {
+                "Content-Type": "application/json"
+            },
 
-    });
+            body: JSON.stringify(updatedStudent)
 
-    const data = await response.json();
+        });
 
-    if (response.ok) {
+        const data = await response.json();
 
-        alert(data.message);
+        if (response.ok) {
 
-        window.location.href = "/view-students";
+            alert(data.message);
+            window.location.href = "/view-students";
 
-    } else {
+        } else {
 
-        alert(data.message);
+            alert(data.message);
+
+        }
+
+    } catch (error) {
+
+        console.error(error);
+        alert("Update Failed");
 
     }
 
 });
+
+// ======================
 
 loadStudent();
